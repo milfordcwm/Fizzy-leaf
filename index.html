@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fizzy Leaf Sparkling Tea</title>
+    <link rel="icon" type="image/webp" sizes="32x32" href="img/FizzyLeafIcon_favicon_dark.webp">
+    <link rel="icon" type="image/webp" sizes="16x16" href="img/FizzyLeafIcon_16x16_dark.webp">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap');
 
@@ -15,6 +17,16 @@
             color: #7a633b;
             scroll-behavior: smooth;
             overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-restoration: manual;
+        }
+
+        /* Ensure page starts at top */
+        html, body {
+            height: 100%;
         }
 
         header {
@@ -237,7 +249,7 @@
     </header>
 
     <section id="home" class="hero">
-        <img src="FizzyLeafLogo.webp" alt="Fizzy Leaf Logo"
+        <img src="img/FizzyLeafLogo.webp" alt="Fizzy Leaf Logo"
             style="width: 420px; max-width: 90vw; margin-bottom: 1.5rem; margin-left: 1rem; margin-right: 1rem; filter: drop-shadow(0 0 20px rgba(210, 168, 99, 0.5)); transition: transform 0.4s ease;">
         <p>Refreshingly&nbsp;Refined. Naturally&nbsp;Sparkling.</p>
         <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Discover Fizzy
@@ -299,6 +311,21 @@
         © 2025 Fizzy Leaf Sparkling Tea · Crafted with care in Tennessee
     </footer>
 
+    <script>
+        // Force scroll to top immediately and on page load to prevent random scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            window.scrollTo(0, 0);
+        });
+
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+
+        // Prevent any automatic scrolling behavior
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>
 
 </body>
 
