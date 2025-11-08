@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +57,8 @@
         }
 
         .hero img {
-            width: 300px;
-            /* Increased logo size */
+            width: 420px; /* Increased logo size */
+            max-width: 90vw;
             margin-bottom: 1.5rem;
             filter: drop-shadow(0 0 20px rgba(210, 168, 99, 0.5));
             transition: transform 0.4s ease;
@@ -67,12 +68,7 @@
             transform: scale(1.05);
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.4rem;
-            margin-bottom: 0.5rem;
-            color: #a88445;
-        }
+        /* Removed the .hero h1 styling, since it's not rendered any more */
 
         .hero p {
             font-size: 1.2rem;
@@ -240,7 +236,7 @@
 
     <section id="home" class="hero">
         <img src="IMG_7455.png" alt="Fizzy Leaf Logo">
-        <h1>Fizzy Leaf</h1>
+        <!-- Removed .hero h1 and h1 content below logo -->
         <p>Refreshingly Refined. Naturally Sparkling.</p>
         <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Discover Fizzy
             Leaf</button>
