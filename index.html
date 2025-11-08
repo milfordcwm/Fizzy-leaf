@@ -218,6 +218,7 @@
         .hero {
             padding-top: 4rem;
             animation: fadeInUp 1s ease forwards;
+            position: relative;
         }
 
         @keyframes fadeInUp {
@@ -231,27 +232,227 @@
             }
         }
 
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            25% {
+                transform: translateY(-8px);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+            75% {
+                transform: translateY(-10px);
+            }
+        }
+
         .hero img {
             width: 450px;
             max-width: 90vw;
             margin-bottom: 2rem;
             filter: drop-shadow(0 8px 30px rgba(210, 168, 99, 0.35));
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+        /* Bubble effects */
+        .bubble {
+            position: absolute;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(210, 168, 99, 0.4));
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise 3s infinite ease-in;
+            pointer-events: none;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5), 0 0 10px rgba(210, 168, 99, 0.3);
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: 0;
+                opacity: 0;
+                transform: translateX(0) scale(0);
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateX(0) scale(1);
             }
             50% {
-                transform: translateY(-15px);
+                opacity: 0.6;
+                transform: translateX(var(--tx)) scale(1.2);
+            }
+            100% {
+                bottom: 120%;
+                opacity: 0;
+                transform: translateX(var(--tx)) scale(0.5);
             }
         }
 
-        .hero img:hover {
-            transform: scale(1.08) translateY(-10px);
-            filter: drop-shadow(0 12px 40px rgba(210, 168, 99, 0.45));
+        .bubble:nth-child(1) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 0s;
+            --tx: 10px;
+        }
+
+        .bubble:nth-child(2) {
+            left: 40%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0.5s;
+            --tx: -15px;
+        }
+
+        .bubble:nth-child(3) {
+            left: 60%;
+            width: 12px;
+            height: 12px;
+            animation-delay: 1s;
+            --tx: 20px;
+        }
+
+        .bubble:nth-child(4) {
+            left: 75%;
+            width: 18px;
+            height: 18px;
+            animation-delay: 1.5s;
+            --tx: -10px;
+        }
+
+        .bubble:nth-child(5) {
+            left: 30%;
+            width: 14px;
+            height: 14px;
+            animation-delay: 2s;
+            --tx: 15px;
+        }
+
+        .bubble:nth-child(6) {
+            left: 85%;
+            width: 16px;
+            height: 16px;
+            animation-delay: 2.5s;
+            --tx: -20px;
+        }
+
+        .bubble:nth-child(7) {
+            left: 50%;
+            width: 22px;
+            height: 22px;
+            animation-delay: 0.8s;
+            --tx: 5px;
+        }
+
+        .bubble:nth-child(8) {
+            left: 15%;
+            width: 13px;
+            height: 13px;
+            animation-delay: 1.8s;
+            --tx: -12px;
+        }
+
+        .bubble:nth-child(9) {
+            left: 45%;
+            width: 17px;
+            height: 17px;
+            animation-delay: 0.3s;
+            --tx: 18px;
+        }
+
+        .bubble:nth-child(10) {
+            left: 70%;
+            width: 14px;
+            height: 14px;
+            animation-delay: 1.2s;
+            --tx: -8px;
+        }
+
+        .bubble:nth-child(11) {
+            left: 25%;
+            width: 19px;
+            height: 19px;
+            animation-delay: 2.3s;
+            --tx: 12px;
+        }
+
+        .bubble:nth-child(12) {
+            left: 55%;
+            width: 11px;
+            height: 11px;
+            animation-delay: 0.7s;
+            --tx: -18px;
+        }
+
+        .bubble:nth-child(13) {
+            left: 80%;
+            width: 16px;
+            height: 16px;
+            animation-delay: 1.6s;
+            --tx: 8px;
+        }
+
+        .bubble:nth-child(14) {
+            left: 35%;
+            width: 21px;
+            height: 21px;
+            animation-delay: 2.8s;
+            --tx: -14px;
+        }
+
+        .bubble:nth-child(15) {
+            left: 10%;
+            width: 12px;
+            height: 12px;
+            animation-delay: 0.9s;
+            --tx: 16px;
+        }
+
+        .bubble:nth-child(16) {
+            left: 65%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2.1s;
+            --tx: -11px;
+        }
+
+        .bubble:nth-child(17) {
+            left: 90%;
+            width: 18px;
+            height: 18px;
+            animation-delay: 1.4s;
+            --tx: 9px;
+        }
+
+        .bubble:nth-child(18) {
+            left: 5%;
+            width: 13px;
+            height: 13px;
+            animation-delay: 0.4s;
+            --tx: -15px;
+        }
+
+        .bubble:nth-child(19) {
+            left: 48%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2.6s;
+            --tx: 13px;
+        }
+
+        .bubble:nth-child(20) {
+            left: 78%;
+            width: 14px;
+            height: 14px;
+            animation-delay: 1.1s;
+            --tx: -17px;
         }
 
         .hero p {
@@ -366,6 +567,82 @@
             height: 4px;
             background: linear-gradient(90deg, #d2a863, #f1e3c4);
             border-radius: 2px;
+        }
+
+        /* Title bubbles */
+        .title-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .title-bubble {
+            position: absolute;
+            bottom: -20px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(210, 168, 99, 0.5));
+            border-radius: 50%;
+            opacity: 0;
+            animation: riseSmall 4s infinite ease-in;
+            pointer-events: none;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(210, 168, 99, 0.3);
+            z-index: 1;
+        }
+
+        @keyframes riseSmall {
+            0% {
+                bottom: -20px;
+                opacity: 0;
+                transform: translateX(0) scale(0);
+            }
+            15% {
+                opacity: 0.7;
+                transform: translateX(0) scale(1);
+            }
+            100% {
+                bottom: 120px;
+                opacity: 0;
+                transform: translateX(var(--tx)) scale(0.3);
+            }
+        }
+
+        .title-bubble:nth-child(2) {
+            left: 10%;
+            width: 10px;
+            height: 10px;
+            animation-delay: 0s;
+            --tx: 5px;
+        }
+
+        .title-bubble:nth-child(3) {
+            left: 30%;
+            width: 12px;
+            height: 12px;
+            animation-delay: 1s;
+            --tx: -8px;
+        }
+
+        .title-bubble:nth-child(4) {
+            left: 50%;
+            width: 9px;
+            height: 9px;
+            animation-delay: 2s;
+            --tx: 10px;
+        }
+
+        .title-bubble:nth-child(5) {
+            left: 70%;
+            width: 11px;
+            height: 11px;
+            animation-delay: 3s;
+            --tx: -6px;
+        }
+
+        .title-bubble:nth-child(6) {
+            left: 90%;
+            width: 8px;
+            height: 8px;
+            animation-delay: 0.5s;
+            --tx: 7px;
         }
 
         .flavors {
@@ -693,15 +970,43 @@
     </header>
 
     <section id="home" class="hero">
-        <img src="img/FizzyLeafLogo.webp" alt="Fizzy Leaf Logo"
-            style="width: 420px; max-width: 90vw; margin-bottom: 1.5rem; margin-left: 1rem; margin-right: 1rem; filter: drop-shadow(0 0 20px rgba(210, 168, 99, 0.5)); transition: transform 0.4s ease;">
+        <div class="logo-container">
+            <img src="img/FizzyLeafLogo.webp" alt="Fizzy Leaf Logo">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
         <p>Refreshingly&nbsp;Refined. Naturally&nbsp;Sparkling.</p>
         <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Discover Fizzy
             Leaf</button>
     </section>
 
     <section id="locations" class="locations">
+        <div class="title-container">
         <h2>Find Fizzy Leaf Near You</h2>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+        </div>
         <p>We're proud to be served at local cafés and shops that share our love for quality and craft. Find Fizzy Leaf
             at the following locations:</p>
         <iframe style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
@@ -710,7 +1015,14 @@
     </section>
 
     <section id="story" class="story">
+        <div class="title-container">
         <h2>Our Story</h2>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+        </div>
         <p>Hello! My name is <strong>Christian Milford</strong> and I am the owner of <strong>Fizzy Leaf</strong>. I was
             always tired of plain water and couldn't stand the sugary drinks that flood our market today. On the other
             hand, so many products that claim to have 0 sugar simply replace it with something artificial — often worse
@@ -726,7 +1038,14 @@
     </section>
 
     <section id="flavors" class="flavors">
+        <div class="title-container">
         <h2>Our Flavors</h2>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+        </div>
         <div class="flavor-card">
             <h3>Roselle Hibiscus</h3>
             <p>Roselle Hibiscus is a bold, vibrant flavor with a naturally tart floral profile. It's refreshingly
@@ -738,7 +1057,14 @@
     </section>
 
     <section id="contact" class="contact">
+        <div class="title-container">
         <h2>Contact</h2>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+            <div class="title-bubble"></div>
+        </div>
         <div class="contact-info">If you have any business inquiries,<br>please reach out to&nbsp;me:</div>
         <form action="https://submit-form.com/vwsJT57aO">
             <label for="name">Name</label>
