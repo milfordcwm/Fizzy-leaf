@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizzy Leaf Sparkling Tea</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBao69hPCBor0egB4lzwGFfLT4zhCUqSJM"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom right, #fffdf8, #fef8ee);
+            color: #7a633b;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1rem 0;
+            z-index: 10;
+            border-bottom: 1px solid rgba(122, 99, 59, 0.15);
+        }
+
+        header a {
+            color: #7a633b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        header a:hover {
+            color: #d2a863;
+            transform: scale(1.1);
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 300px;
+            /* Increased logo size */
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 20px rgba(210, 168, 99, 0.5));
+            transition: transform 0.4s ease;
+        }
+
+        .hero img:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.4rem;
+            margin-bottom: 0.5rem;
+            color: #a88445;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #8d744a;
+            max-width: 600px;
+        }
+
+        button {
+            margin-top: 2rem;
+            padding: 0.8rem 2.5rem;
+            background: linear-gradient(90deg, #d2a863, #f1e3c4);
+            border: none;
+            border-radius: 40px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(210, 168, 99, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(210, 168, 99, 0.4);
+        }
+
+        #map {
+            width: 100%;
+            height: 450px;
+            border-radius: 16px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(210, 168, 99, 0.2);
+        }
+
+        .story,
+        .flavors,
+        .locations,
+        .contact {
+            margin-top: 0rem;
+            padding-top: 0rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .story h2,
+        .flavors h2,
+        .locations h2,
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: #a88445;
+            margin-bottom: 0.8 rem;
+        }
+
+        .flavors {
+            background: linear-gradient(to bottom right, #fff0f0, #ffecec);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            box-shadow: 0 6px 20px rgba(255, 150, 150, 0.1);
+        }
+
+        .flavor-card {
+            border: 2px solid rgba(210, 168, 99, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 6px 20px rgba(210, 168, 99, 0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(210, 168, 99, 0.2);
+        }
+
+        .flavor-card h3 {
+            font-size: 1.8rem;
+            color: #a84a45;
+        }
+
+        .flavor-card p {
+            font-size: 1.1rem;
+            color: #7a4a3b;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #8d744a;
+            background: linear-gradient(to top, #fffaf2, #f7f2e8);
+            border-top: 1px solid rgba(122, 99, 59, 0.1);
+        }
+
+        /* Form styling */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .contact label {
+            color: #7a633b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 1rem;
+            border: 2px solid rgba(210, 168, 99, 0.3);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            outline: none;
+            border-color: #d2a863;
+            box-shadow: 0 0 0 3px rgba(210, 168, 99, 0.2);
+        }
+
+        .contact textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem;
+            z-index: 10;
+            border-bottom: 1px solid rgba(122, 99, 59, 0.1);
+
+            /* to make header smaller for tablet and below */
+            @media (max-width: 1024px) {
+                gap: 1rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="#home">Home</a>
+        <a href="#locations">Locations</a>
+        <a href="#story">Our Story</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#contact">Contact</a>
+    </header>
+
+    <section id="home" class="hero">
+        <img src="IMG_7455.png" alt="Fizzy Leaf Logo">
+        <h1>Fizzy Leaf</h1>
+        <p>Refreshingly Refined. Naturally Sparkling.</p>
+        <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Discover Fizzy
+            Leaf</button>
+    </section>
+
+    <section id="locations" class="locations">
+        <h2>Find Fizzy Leaf Near You</h2>
+        <p>We're proud to be served at local cafés and shops that share our love for quality and craft. Find Fizzy Leaf
+            at the following locations:</p>
+        <div id="map"></div>
+    </section>
+
+    <section id="story" class="story">
+        <h2>Our Story</h2>
+        <p>Hello! My name is <strong>Christian Milford</strong> and I am the owner of <strong>Fizzy Leaf</strong>. I was
+            always tired of plain water and couldn't stand the sugary drinks that flood our market today. On the other
+            hand, so many products that claim to have 0 sugar simply replace it with something artificial — often worse
+            for you than sugar itself!<br><br>
+            One Christmas, I received a small carbonator and started experimenting with different drinks to carbonate.
+            After many failures — coffee, milk, even energy drinks — I remembered how my mom used to make me hibiscus
+            tea when I was young. It had such rich, natural flavor. So, I decided to carbonate it… and it was
+            amazing!<br><br>
+            From that moment, I began bringing the tea to parties, and everyone encouraged me to start selling it. After
+            much trial, passion, and hard work, here I am — sharing <strong>Fizzy Leaf Sparkling Tea</strong> with you.
+            I love this drink because it's truly a <em>healthy</em> alternative with no weird aftertastes, just a crisp,
+            clean, refreshing sparkle that you can feel good about drinking.</p>
+    </section>
+
+    <section id="flavors" class="flavors">
+        <h2>Our Flavors</h2>
+        <div class="flavor-card">
+            <h3>Roselle Hibiscus</h3>
+            <p>Roselle Hibiscus is a bold, vibrant flavor with a naturally tart floral profile. It's refreshingly
+                balanced — full of character yet smooth and light. With less than 1 gram of sugar, 0 carbs, 0 calories,
+                and absolutely no fake sweeteners, it's a guilt-free indulgence that feels as pure as it tastes. Each
+                sip bursts with a ruby-red glow of hibiscus petals, offering a clean, botanical finish that both
+                energizes and relaxes the senses.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">If you have any business inquiries please reach out to me:</div>
+        <form action="https://submit-form.com/URy9eCI4c">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required="" />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required="" />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your message..." required=""></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2025 Fizzy Leaf Sparkling Tea · Crafted with care in Tennessee
+    </footer>
+
+    <script>
+        function initMap() {
+            const location = { lat: 35.7975, lng: -86.9115 }; // 1819 Coffee, Thompsons Station TN
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: location,
+                styles: [
+                    { elementType: 'geometry', stylers: [{ color: '#fefaf5' }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#7a633b' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
+                    { featureType: 'poi.park', stylers: [{ color: '#f8f2e4' }] },
+                    { featureType: 'water', stylers: [{ color: '#e9e3d1' }] }
+                ]
+            });
+
+            new google.maps.Marker({
+                position: location,
+                map: map,
+                title: '1819 Coffee - Fizzy Leaf Available Here',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10,
+                    fillColor: '#d2a863',
+                    fillOpacity: 1,
+                    strokeWeight: 1.5,
+                    strokeColor: '#7a633b'
+                }
+            });
+        }
+
+        window.onload = initMap;
+    </script>
+
+</body>
+
+</html>
