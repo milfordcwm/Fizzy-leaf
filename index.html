@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fizzy Leaf Sparkling Tea</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBao69hPCBor0egB4lzwGFfLT4zhCUqSJM"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap');
 
@@ -99,8 +98,9 @@
             box-shadow: 0 6px 16px rgba(210, 168, 99, 0.4);
         }
 
-        #map {
+        iframe {
             width: 100%;
+            max-width: 600px;
             height: 450px;
             border-radius: 16px;
             margin-top: 2rem;
@@ -250,7 +250,13 @@
         <h2>Find Fizzy Leaf Near You</h2>
         <p>We're proud to be served at local cafés and shops that share our love for quality and craft. Find Fizzy Leaf
             at the following locations:</p>
-        <div id="map"></div>
+        <iframe
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBao69hPCBor0egB4lzwGFfLT4zhCUqSJM&q=1819+Coffee,Thompsons+Station+TN">
+        </iframe>
     </section>
 
     <section id="story" class="story">
@@ -299,38 +305,6 @@
         © 2025 Fizzy Leaf Sparkling Tea · Crafted with care in Tennessee
     </footer>
 
-    <script>
-        function initMap() {
-            const location = { lat: 35.7975, lng: -86.9115 }; // 1819 Coffee, Thompsons Station TN
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
-                center: location,
-                styles: [
-                    { elementType: 'geometry', stylers: [{ color: '#fefaf5' }] },
-                    { elementType: 'labels.text.fill', stylers: [{ color: '#7a633b' }] },
-                    { elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
-                    { featureType: 'poi.park', stylers: [{ color: '#f8f2e4' }] },
-                    { featureType: 'water', stylers: [{ color: '#e9e3d1' }] }
-                ]
-            });
-
-            new google.maps.Marker({
-                position: location,
-                map: map,
-                title: '1819 Coffee - Fizzy Leaf Available Here',
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: '#d2a863',
-                    fillOpacity: 1,
-                    strokeWeight: 1.5,
-                    strokeColor: '#7a633b'
-                }
-            });
-        }
-
-        window.onload = initMap;
-    </script>
 
 </body>
 
