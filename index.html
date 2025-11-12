@@ -165,6 +165,76 @@
             border-top: 1px solid rgba(122, 99, 59, 0.15);
             font-weight: 500;
         }
+
+        /* --- Enhanced Contact Section Styling --- */
+        .contact-card {
+            background: rgba(255, 252, 242, 0.95);
+            border-radius: 22px;
+            box-shadow: 0 8px 28px rgba(210, 168, 99, 0.10), 0 2px 6px rgba(170, 132, 69, 0.07);
+            max-width: 400px;
+            margin: 2.5rem auto 0;
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: left;
+        }
+        .contact-card form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+        .form-row label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #a88445;
+            font-size: 1.07rem;
+            letter-spacing: 0.01em;
+        }
+        .form-row input,
+        .form-row textarea {
+            width: 100%;
+            padding: 0.85em 1em;
+            border-radius: 12px;
+            border: 1.5px solid #ecd7b2;
+            background: #fffdfa;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #83693e;
+            transition: border 0.2s, box-shadow 0.2s;
+            outline: none;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .form-row input:focus,
+        .form-row textarea:focus {
+            border-color: #d2a863;
+            box-shadow: 0 0 0 1.5px #d2a86322, 0 2px 10px rgba(210, 168, 99, 0.07);
+            background: #fffbf5;
+        }
+        .fancy-btn {
+            background: linear-gradient(107deg, #d2a863 0%, #c99a52 100%);
+            border: none;
+            border-radius: 18px;
+            color: #fff;
+            padding: 0.95em 2.5em;
+            font-size: 1.12rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.2em;
+            box-shadow: 0 4px 18px rgba(210, 168, 99, 0.13);
+            transition: background 0.23s, transform 0.18s, box-shadow 0.23s;
+            letter-spacing: 0.01em;
+        }
+        .fancy-btn:hover,
+        .fancy-btn:focus {
+            background: linear-gradient(107deg, #c99a52 0%, #d2a863 100%);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(210,168,99, 0.18);
+        }
+        @media (max-width: 500px) {
+            .contact-card {
+                padding: 1.5rem 0.6rem 1.1rem 0.6rem;
+            }
+        }
     </style>
 </head>
 
@@ -260,18 +330,27 @@
         </div>
     </section>
 
+    <!-- ✨ Beautified Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact</h2>
         <p>If you have any business inquiries, please reach out:</p>
-        <form action="https://submit-form.com/vwsJT57aO">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your email address" required />
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <div class="contact-card">
+            <form action="https://submit-form.com/vwsJT57aO" autocomplete="on">
+                <div class="form-row">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your email address" required />
+                </div>
+                <div class="form-row">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+                </div>
+                <button type="submit" class="fancy-btn">Send</button>
+            </form>
+        </div>
     </section>
 
     <footer>
