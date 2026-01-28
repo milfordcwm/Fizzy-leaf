@@ -1,4 +1,4 @@
-e<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,7 +27,6 @@ e<!DOCTYPE html>
 
         html {
             scroll-behavior: smooth;
-            scroll-restoration: manual;
         }
 
         body::before {
@@ -56,12 +55,6 @@ e<!DOCTYPE html>
             z-index: 1000;
             border-bottom: 1px solid rgba(122, 99, 59, 0.08);
             box-shadow: 0 2px 24px rgba(122, 99, 59, 0.06);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.99);
-            box-shadow: 0 4px 32px rgba(122, 99, 59, 0.12);
         }
 
         .nav-container {
@@ -71,14 +64,14 @@ e<!DOCTYPE html>
             justify-content: center;
             align-items: center;
             padding: 1rem 2rem;
-            position: relative;
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
             gap: 2.5rem;
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .nav-links a {
@@ -98,19 +91,34 @@ e<!DOCTYPE html>
 
         section {
             min-height: 100vh;
-            padding: 6rem 2rem 4rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
         }
 
         .hero img {
             width: 390px;
             max-width: 90vw;
-            margin-bottom: 5rem;
+            margin-bottom: 2rem;
             filter: drop-shadow(0 8px 30px rgba(210, 168, 99, 0.35));
         }
 
-        button {
-            margin-top: 1rem;
+        .hero-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .feature-image {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button, .fancy-btn {
             padding: 1rem 3rem;
             background: linear-gradient(135deg, #d2a863 0%, #c99a52 100%);
             border: none;
@@ -119,121 +127,96 @@ e<!DOCTYPE html>
             font-weight: 600;
             font-size: 1.05rem;
             cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Locations Grid Styling --- */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+            text-align: left;
+        }
+
+        .location-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(210, 168, 99, 0.15);
+            box-shadow: 0 4px 12px rgba(122, 99, 59, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(210, 168, 99, 0.15);
+        }
+
+        .location-card strong {
+            display: block;
+            color: #a88445;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
         }
 
         iframe {
             width: 100%;
-            max-width: 700px;
-            height: 500px;
+            max-width: 900px;
+            height: 450px;
             border-radius: 20px;
             margin-top: 2.5rem;
-            box-shadow: 0 8px 30px rgba(210, 168, 99, 0.25);
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            border: 3px solid white;
+            box-shadow: 0 8px 30px rgba(210, 168, 99, 0.2);
         }
 
-        .story,
-        .flavors,
-        .locations,
-        .contact {
+        .story, .flavors, .contact {
             max-width: 900px;
             margin: 0 auto;
-            line-height: 1.9;
         }
 
-        .locations p,
-        .story p {
-            font-size: 1.1rem;
-            color: #7a633b;
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #a88445;
             margin-bottom: 1.5rem;
         }
 
-        .story h2,
-        .flavors h2,
-        .locations h2,
-        .contact h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #a88445;
+        /* --- Contact Form --- */
+        .contact-card {
+            background: rgba(255, 252, 242, 0.95);
+            border-radius: 22px;
+            box-shadow: 0 8px 28px rgba(210, 168, 99, 0.1);
+            max-width: 450px;
+            margin: 2.5rem auto;
+            padding: 2.5rem;
+            text-align: left;
+        }
+
+        .form-row { margin-bottom: 1.2rem; }
+        .form-row label { display: block; font-weight: 600; color: #a88445; margin-bottom: 0.4rem; }
+        .form-row input, .form-row textarea {
+            width: 100%; padding: 0.8rem; border-radius: 10px; border: 1.5px solid #ecd7b2;
+            font-family: inherit;
         }
 
         footer {
             text-align: center;
-            padding: 3rem 2rem;
-            color: #8d744a;
-            background: linear-gradient(to top, #fffaf2, #f7f2e8);
-            border-top: 1px solid rgba(122, 99, 59, 0.15);
-            font-weight: 500;
+            padding: 3rem;
+            background: #f7f2e8;
+            border-top: 1px solid rgba(122, 99, 59, 0.1);
         }
 
-        /* --- Enhanced Contact Section Styling --- */
-        .contact-card {
-            background: rgba(255, 252, 242, 0.95);
-            border-radius: 22px;
-            box-shadow: 0 8px 28px rgba(210, 168, 99, 0.10), 0 2px 6px rgba(170, 132, 69, 0.07);
-            max-width: 400px;
-            margin: 2.5rem auto 0;
-            padding: 2.5rem 2rem 2rem 2rem;
-            text-align: left;
-        }
-        .contact-card form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.3rem;
-        }
-        .form-row label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5em;
-            color: #a88445;
-            font-size: 1.07rem;
-            letter-spacing: 0.01em;
-        }
-        .form-row input,
-        .form-row textarea {
-            width: 100%;
-            padding: 0.85em 1em;
-            border-radius: 12px;
-            border: 1.5px solid #ecd7b2;
-            background: #fffdfa;
-            font-family: inherit;
-            font-size: 1rem;
-            color: #83693e;
-            transition: border 0.2s, box-shadow 0.2s;
-            outline: none;
-            box-sizing: border-box;
-            resize: vertical;
-        }
-        .form-row input:focus,
-        .form-row textarea:focus {
-            border-color: #d2a863;
-            box-shadow: 0 0 0 1.5px #d2a86322, 0 2px 10px rgba(210, 168, 99, 0.07);
-            background: #fffbf5;
-        }
-        .fancy-btn {
-            background: linear-gradient(107deg, #d2a863 0%, #c99a52 100%);
-            border: none;
-            border-radius: 18px;
-            color: #fff;
-            padding: 0.95em 2.5em;
-            font-size: 1.12rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 0.2em;
-            box-shadow: 0 4px 18px rgba(210, 168, 99, 0.13);
-            transition: background 0.23s, transform 0.18s, box-shadow 0.23s;
-            letter-spacing: 0.01em;
-        }
-        .fancy-btn:hover,
-        .fancy-btn:focus {
-            background: linear-gradient(107deg, #c99a52 0%, #d2a863 100%);
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 32px rgba(210,168,99, 0.18);
-        }
-        @media (max-width: 500px) {
-            .contact-card {
-                padding: 1.5rem 0.6rem 1.1rem 0.6rem;
-            }
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .locations-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -254,132 +237,123 @@ e<!DOCTYPE html>
 
     <section id="home" class="hero">
         <img src="img/FizzyLeafLogo.webp" alt="Fizzy Leaf Logo">
-         <img src="Fizzyleaf2.jpg" alt="Fizzy Leaf photo" class="feature-image">
-    <img src="Fizzyleaf3.jpg" alt="Fizzy Leaf photo" class="feature-image">
-    <img src="Fizzyleaf4.jpg" alt="Fizzy Leaf photo" class="feature-image">
-<p>Made and Sold here in Middle Tennessee.</p>
-        <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
-            Discover Fizzy Leaf
+        <div class="hero-images">
+            <img src="Fizzyleaf2.jpg" alt="Fizzy Leaf photo" class="feature-image">
+            <img src="Fizzyleaf3.jpg" alt="Fizzy Leaf photo" class="feature-image">
+            <img src="Fizzyleaf4.jpg" alt="Fizzy Leaf photo" class="feature-image">
+        </div>
+        <p style="font-size: 1.2rem; font-weight: 500;">Made and Sold here in Middle Tennessee.</p>
+        <button onclick="document.getElementById('locations').scrollIntoView({behavior:'smooth'})">
+            Find Near You
         </button>
     </section>
 
-    <!-- ✅ Updated Locations Section -->
     <section id="locations" class="locations">
-        <div class="title-container">
-            <h2>Find Fizzy Leaf Near You</h2>
-        </div>
-        <p>We’re proud to be sold at local coffee shops, cafés, restaurants, and farmers shops that share our love for
-            quality and craft. Find Fizzy Leaf at the following locations:</p>
+        <h2>Find Fizzy Leaf Near You</h2>
+        <p>Proudly served at local coffee shops, cafés, and markets across Tennessee.</p>
 
-        <div class="location-list" style="margin:2rem auto; text-align:left; max-width:700px;">
-            <div style="margin-bottom:1.5rem;">
+        <div class="locations-grid">
+            <div class="location-card">
+                <strong>High Brow Coffee</strong>
+                188 Front St, Unit 102<br>
+                Franklin, TN 37064
+            </div>
 
-            <div>
-                <strong>White Shepherd Coffee</strong><br>
+            <div class="location-card">
+                <strong>The Brunch Collective</strong>
+                5323 Main St<br>
+                Spring Hill, TN 37174
+            </div>
+
+            <div class="location-card">
+                <strong>The Coffee House</strong>
+                144 2nd Ave N<br>
+                Franklin, TN 37064
+            </div>
+
+            <div class="location-card">
+                <strong>White Shepherd Coffee</strong>
                 2101 Branford Pl Unit 101<br>
-                Thompsons Station, TN 37179<br>
-                United States
+                Thompsons Station, TN 37179
             </div>
-        </div>
-            <div style="margin-bottom:1.5rem;">
-  <div>
-    <strong>1819 Coffee</strong><br>
-    4683 Columbia Pike<br>
-    Thompsons Station, TN 37179<br>
-    United States
-  </div>
-</div>
-<div style="margin-bottom:1.5rem;">
-  <div>
-    <strong>Mama Mila’s</strong><br>
-    1200 S Garden St<br>
-    Columbia, TN 38401<br>
-    United States
-  </div>
-</div>
-<div style="margin-bottom:1.5rem;">
-  <div>
-    <strong>Old Stone Creamery</strong><br>
-    2301 Sugar Ridge Rd<br>
-    Spring Hill, TN 37174<br>
-    United States
-  </div>
-</div>
- <strong>Awaken House</strong><br>
+
+            <div class="location-card">
+                <strong>1819 Coffee</strong>
+                4683 Columbia Pike<br>
+                Thompsons Station, TN 37179
+            </div>
+
+            <div class="location-card">
+                <strong>Mama Mila’s</strong>
+                1200 S Garden St<br>
+                Columbia, TN 38401
+            </div>
+
+            <div class="location-card">
+                <strong>Old Stone Creamery</strong>
+                2301 Sugar Ridge Rd<br>
+                Spring Hill, TN 37174
+            </div>
+
+            <div class="location-card">
+                <strong>Awaken House</strong>
                 3035 Reserve Blvd<br>
-                Spring Hill, TN 37174<br>
-                United States
+                Spring Hill, TN 37174
             </div>
         </div>
-</div> <!-- closes the location-list -->
 
-<iframe
-  src="https://www.google.com/maps/d/embed?mid=1tMSK6594JW6t7VQyfvKAV3iCKFIs9gI&ehbc=2E312F"
-  style="width:100%; height:450px; border:0; margin-top:2rem;"
-  loading="lazy">
-</iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d103310.22248460613!2d-86.9740268!3d35.9032776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scoffee%20shops%20middle%20tennessee!5e0!3m2!1sen!2sus!4v1700000000000"
+            allowfullscreen="" loading="lazy">
+        </iframe>
+    </section>
 
-</section>
-<section id="instagram" class="instagram-feed">
-  <h2>Follow Fizzy Leaf on Instagram</h2>
-  <p>Behind the scenes, new drops, and where to find Fizzy Leaf in the wild 🍃</p>
+    <section id="instagram" class="instagram-feed" style="min-height: auto; padding-bottom: 5rem;">
+        <h2>Follow Our Journey</h2>
+        <p>Behind the scenes 🍃</p>
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-18cc5d9e-ff56-432e-9d94-79147ead9d44" data-elfsight-app-lazy></div>
+    </section>
 
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-  <div class="elfsight-app-18cc5d9e-ff56-432e-9d94-79147ead9d44" data-elfsight-app-lazy></div>
-</section>
-
-<section id="story" class="story">
-
+    <section id="story" class="story">
         <h2>Our Story</h2>
-        <p>Hello! My name is <strong>Christian Milford</strong> and I am the owner of <strong>Fizzy Leaf</strong>. I was
-            always tired of plain water and couldn't stand the sugary drinks that flood our market today. On the other
-            hand, so many products that claim to have 0 sugar simply replace it with something artificial — often worse
-            for you than sugar itself!
-            <br><br>
-            One Christmas, I received a small carbonator and started experimenting with different drinks to carbonate.
-            After many failures — coffee, milk, even energy drinks — I remembered how my mom used to make me hibiscus
-            tea when I was young. It had such rich, natural flavor. So, I decided to carbonate it… and it was amazing!
-            <br><br>
-            From that moment, I began bringing the tea to parties, and everyone encouraged me to start selling it. After
-            much trial, passion, and hard work, here I am — sharing <strong>Fizzy Leaf Sparkling Tea</strong> with you.
-        </p>
+        <p>Hello! My name is <strong>Christian Milford</strong> and I am the owner of <strong>Fizzy Leaf</strong>. 
+           Tired of sugary drinks and artificial sweeteners, I started experimenting with carbonating my mom's hibiscus tea recipe. 
+           The result was a refreshingly bold, clean sparkling tea that people couldn't get enough of. 
+           Today, I’m proud to share that passion with you.</p>
     </section>
 
     <section id="flavors" class="flavors">
         <h2>Our Flavors</h2>
-        <div class="flavor-card">
-            <h3>Roselle Hibiscus</h3>
-            <p>Roselle Hibiscus is a bold, vibrant flavor with a naturally tart floral profile. It's refreshingly
-                balanced — full of character yet smooth and light. With less than 1 gram of sugar, 0 carbs, 0 calories,
-                and absolutely no fake sweeteners, it's a guilt-free indulgence that feels as pure as it tastes.</p>
+        <div class="location-card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <h3 style="color: #a88445;">Roselle Hibiscus</h3>
+            <p>Bold, vibrant, and naturally tart. 0 calories, 0 carbs, and absolutely no fake sweeteners.</p>
         </div>
     </section>
 
-    <!-- ✨ Beautified Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact</h2>
-        <p>If you have any business inquiries, please reach out:</p>
         <div class="contact-card">
-            <form action="https://submit-form.com/vwsJT57aO" autocomplete="on">
+            <form action="https://submit-form.com/vwsJT57aO">
                 <div class="form-row">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required />
+                    <input type="text" id="name" name="name" required />
                 </div>
                 <div class="form-row">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your email address" required />
+                    <input type="email" id="email" name="email" required />
                 </div>
                 <div class="form-row">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+                    <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="fancy-btn">Send</button>
+                <button type="submit" class="fancy-btn" style="width: 100%;">Send Message</button>
             </form>
         </div>
     </section>
 
     <footer>
-        © 2025 Fizzy Leaf Sparkling Tea · Crafted with care in Tennessee
+        © 2026 Fizzy Leaf Sparkling Tea · Crafted with care in Tennessee
     </footer>
 
 </body>
