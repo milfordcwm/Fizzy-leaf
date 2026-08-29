@@ -83,6 +83,12 @@
   font-weight: 700;
   color: var(--leaf);
   margin: 0.5rem 0 1.5rem;
+  transition: filter 0.2s ease;
+}
+.shop-price-pending {
+  filter: blur(0.45em);
+  user-select: none;
+  pointer-events: none;
 }
 
 .shop-price s {

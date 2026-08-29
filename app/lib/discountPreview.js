@@ -4,6 +4,21 @@ import {SELLING_PLAN_ID, VARIANT_12} from '~/lib/product';
 
 const EMPTY_RATES = {onetime: null, subscribe: null};
 
+export function needsDiscountPreview(cart) {
+  return (
+    cartDiscountCodes(cart).length > 0 &&
+    (cart?.lines?.nodes ?? []).length === 0
+  );
+}
+
+export function peekDiscountPreview(session, cart) {
+  const codes = cartDiscountCodes(cart);
+  if (!codes.length) return null;
+  const cached = session?.get('discountPreview');
+  if (cached?.key === previewCacheKey(codes) && cached.rates) return cached.rates;
+  return null;
+}
+
 export async function loadDiscountPreview({storefront, cart, session}) {
   const codes = cartDiscountCodes(cart);
   if (!codes.length) return EMPTY_RATES;
@@ -11,7 +26,7 @@ export async function loadDiscountPreview({storefront, cart, session}) {
     return discountRatesByPurchaseType(cart);
   }
 
-  const key = codes.map((code) => code.toLowerCase()).sort().join(',');
+  const key = previewCacheKey(codes);
   const cached = session?.get('discountPreview');
   if (cached?.key === key && cached.rates) return cached.rates;
 
@@ -22,6 +37,10 @@ export async function loadDiscountPreview({storefront, cart, session}) {
 
 function cartDiscountCodes(cart) {
   return (cart?.discountCodes ?? []).map((row) => row.code).filter(Boolean);
+}
+
+function previewCacheKey(codes) {
+  return codes.map((code) => code.toLowerCase()).sort().join(',');
 }
 
 async function probeDiscountRates(storefront, codes) {
