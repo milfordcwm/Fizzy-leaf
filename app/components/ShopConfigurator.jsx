@@ -57,7 +57,12 @@ export function ShopConfigurator() {
         <p style={{color: 'var(--text-muted)', marginBottom: '0.5rem'}}>
           {pack}-Pack · Sparkling Tea · 12 oz cans
         </p>
-        <ShopPrice pack={pack} purchaseType={purchaseType} prices={prices} />
+        <ShopPrice
+          pack={pack}
+          purchaseType={purchaseType}
+          prices={prices}
+          previewRates={data.previewRates}
+        />
 
         <p className="pack-label">Select Case Size</p>
         <div className="pack-selector">

@@ -1,23 +1,18 @@
 import {Suspense} from 'react';
 import {Await, useRouteLoaderData} from 'react-router';
 import {useOptimisticCart} from '@shopify/hydrogen';
-import {priceDisplay} from '~/lib/product';
 import {shopPriceDisplay} from '~/lib/discountedPrice';
 
-export function ShopPrice({pack, purchaseType, prices}) {
+export function ShopPrice({pack, purchaseType, prices, previewRates}) {
   const root = useRouteLoaderData('root');
-  const fallback = priceDisplay(pack, purchaseType, prices);
+  const offer = {pack, purchaseType, prices, previewRates};
+  const fallback = shopPriceDisplay({...offer, cart: null});
   if (!root?.cart) return <PriceText price={fallback} />;
 
   return (
     <Suspense fallback={<PriceText price={fallback} />}>
       <Await resolve={root.cart}>
-        {(cart) => (
-          <CartShopPrice
-            cart={cart}
-            offer={{pack, purchaseType, prices}}
-          />
-        )}
+        {(cart) => <CartShopPrice cart={cart} offer={offer} />}
       </Await>
     </Suspense>
   );

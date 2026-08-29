@@ -41,7 +41,22 @@ export function lineShowsDiscount(line, cart) {
   return moneyCents(linePaidTotal(line, cart)) < moneyCents(lineListTotal(line));
 }
 
-export function shopPriceDisplay({pack, purchaseType, prices, cart}) {
+export function discountRatesByPurchaseType(cart) {
+  const types = entitledPurchaseTypes(cart);
+  const rate = entitledDiscountRate(cart);
+  return {
+    onetime: types.has('onetime') ? rate : null,
+    subscribe: types.has('subscribe') ? rate : null,
+  };
+}
+
+export function shopPriceDisplay({
+  pack,
+  purchaseType,
+  prices,
+  cart,
+  previewRates,
+}) {
   const base = priceDisplay(pack, purchaseType, prices);
   const catalog = prices?.[pack]?.[purchaseType];
   if (catalog == null) return base;
@@ -51,6 +66,7 @@ export function shopPriceDisplay({pack, purchaseType, prices, cart}) {
     purchaseType,
     catalog,
     cart,
+    previewRates,
   });
   if (
     liveAmount == null ||
@@ -68,16 +84,26 @@ export function shopPriceDisplay({pack, purchaseType, prices, cart}) {
   };
 }
 
-function discountedCatalogAmount({pack, purchaseType, catalog, cart}) {
-  if (!purchaseTypeGetsDiscount(cart, purchaseType)) return null;
+function discountedCatalogAmount({
+  pack,
+  purchaseType,
+  catalog,
+  cart,
+  previewRates,
+}) {
   const line = matchingCartLine(cart, pack, purchaseType);
   if (line) {
     if (!line.quantity || !lineShowsDiscount(line, cart)) return null;
     return moneyCents(linePaidTotal(line, cart)) / 100 / line.quantity;
   }
-  const rate = entitledDiscountRate(cart);
-  if (rate == null) return null;
-  return catalog * (1 - rate);
+  if (purchaseTypeGetsDiscount(cart, purchaseType)) {
+    const liveRate = entitledDiscountRate(cart);
+    if (liveRate == null) return null;
+    return catalog * (1 - liveRate);
+  }
+  const previewRate = previewRates?.[purchaseType];
+  if (previewRate == null) return null;
+  return catalog * (1 - previewRate);
 }
 
 function purchaseTypeGetsDiscount(cart, purchaseType) {
