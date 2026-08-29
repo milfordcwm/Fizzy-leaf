@@ -4,11 +4,12 @@ import {SELLING_PLAN_ID, VARIANT_12} from '~/lib/product';
 
 const EMPTY_RATES = {onetime: null, subscribe: null};
 
+export function hasDiscountCodes(cart) {
+  return cartDiscountCodes(cart).length > 0;
+}
+
 export function needsDiscountPreview(cart) {
-  return (
-    cartDiscountCodes(cart).length > 0 &&
-    (cart?.lines?.nodes ?? []).length === 0
-  );
+  return hasDiscountCodes(cart) && (cart?.lines?.nodes ?? []).length === 0;
 }
 
 export function peekDiscountPreview(session, cart) {

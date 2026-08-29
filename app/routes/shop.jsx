@@ -1,5 +1,7 @@
 import {ShopConfigurator} from '~/components/ShopConfigurator';
+import {discountRatesByPurchaseType} from '~/lib/discountedPrice';
 import {
+  hasDiscountCodes,
   loadDiscountPreview,
   needsDiscountPreview,
   peekDiscountPreview,
@@ -20,15 +22,17 @@ export async function loader({context}) {
 }
 
 function discountPreviewForCart(context, cart) {
-  if (!needsDiscountPreview(cart)) return null;
-  return (
-    peekDiscountPreview(context.session, cart) ??
-    loadDiscountPreview({
+  if (!hasDiscountCodes(cart)) return null;
+  const peeked = peekDiscountPreview(context.session, cart);
+  if (peeked) return peeked;
+  if (needsDiscountPreview(cart)) {
+    return loadDiscountPreview({
       storefront: context.storefront,
       cart,
       session: context.session,
-    })
-  );
+    });
+  }
+  return discountRatesByPurchaseType(cart);
 }
 
 export default function ShopPage() {
