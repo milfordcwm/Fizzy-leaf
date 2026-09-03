@@ -8,6 +8,12 @@ build/
 .react-router/
 .cache/
 *.tsbuildinfo
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 customer-accountapi.generated.d.ts
 storefrontapi.generated.d.ts
 app/routes/+types/
