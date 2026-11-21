@@ -154,6 +154,21 @@ export const LOCATIONS = [
     city: 'College Grove',
     name: 'Delvin Farms',
     addr: '6361 Cox Rd, College Grove, TN 37046',
+  },  },
+  {
+    city: 'Franklin',
+    name: 'Honest Coffee (Berry Farms)',
+    addr: '4000 Hughes Crossing #120, Franklin, TN 37064',
+  },
+  {
+    city: 'Franklin',
+    name: 'Honest Coffee (The Factory at Franklin)',
+    addr: '230 Franklin Rd #11a, Franklin, TN 37064',
+  },
+  {
+    city: 'Nashville',
+    name: 'Honest Coffee (West Nashville)',
+    addr: '3820 Charlotte Ave #135, Nashville, TN 37209',
   },
 ];
 
