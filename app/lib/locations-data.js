@@ -154,7 +154,7 @@ export const LOCATIONS = [
     city: 'College Grove',
     name: 'Delvin Farms',
     addr: '6361 Cox Rd, College Grove, TN 37046',
-  },  },
+  },
   {
     city: 'Franklin',
     name: 'Honest Coffee (Berry Farms)',
